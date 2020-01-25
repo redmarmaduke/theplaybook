@@ -11,12 +11,13 @@ express.engine("handlebars", ExpressHandlebars({ defaultLayout: "default" }));
 express.set("view engine", "handlebars");
 
 // acquire the routes for express
-require('./controllers/routes.js')(express);
+let db = require('./controllers/routes.js')(express);
 
-express.listen(PORT, function(error) {
-    if (error) {
-        throw error;
-    }
-    console.log("Express listening on PORT:",PORT);
+db.sequelize.sync({ force: true }).then(function () {
+    express.listen(PORT, function (error) {
+        if (error) {
+            throw error;
+        }
+        console.log("Express listening on PORT:", PORT);
+    });
 });
-
