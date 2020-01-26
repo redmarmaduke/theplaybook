@@ -8,6 +8,8 @@ module.exports = function(sequelize,Sequelize) {
             type: Sequelize.STRING,
             allowNull: false 
         }
+    },{
+        timestamps: false
     });
 
     User.associate = function (models) {
