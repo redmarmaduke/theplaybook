@@ -12,24 +12,18 @@
 <div id="wrapper">
   <div id="content-wrapper">
     <div id="content">
-      <h4>List of Games or Forum</h4>
+      <h4>Top Forums</h4>
       <dl>
-        <dt>THE PLAYBOOK</dt>
-        <dd> An awesome new forum.</dd>
-        <dt>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam corporis nisi reprehenderit, asperiores inventore tempore fuga recusandae eaque voluptatem, suscipit atque. Ex inventore rerum voluptate dignissimos voluptates facere! Dolores, totam!</dt>
-        <dd>Best Games <em>Top 10 of all time</em></dd>
-        <dt>Next Idea</dt>
-        <dd>Next idea. <em>Next idea.<del> </em></dd>
-        <dt>Games games games</dt>
-        <dd>More games. <em>games games games.</em></dd>
-        <dt>Gaming</dt>
-        <dd class="last">Fun. <em>Gamers are a way to escape.</em></dd>
+        {{#each comments}}
+        <dt>{{this}}</dt>
+        {{/each}}
       </dl>
-      <h6>Top Games??</h6>
-      <blockquote>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim, maiores eligendi numquam nulla iure optio magni dolores nemo facere eaque exercitationem quod! Laborum ipsam illum provident eveniet temporibus pariatur doloremque!</p>
-      </blockquote>
-      <pre><code>This is unlike any code I've ever seen in my entire life. Well, minus my dreams, maybe.</code></pre>
+      <h6>Top Games</h6>
+      <dl>
+        {{#each games}}
+        <dt>{{this}}</dt>
+        {{/each}}
+      </dl>
     </div>
   </div>
   <div id="sidebar-wrapper">
@@ -41,7 +35,6 @@
         <li>Genre</li>
         <li>Release Date</li>
         <li>Popularity</li>
-    
       </ul>
       <h3>List</h3>
       <ol>
