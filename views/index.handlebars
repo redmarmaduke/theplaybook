@@ -1,0 +1,55 @@
+<div id="header">
+  <h1>THE PLAYBOOK</h1>
+</div>
+<div id="navigation">
+  <ul>
+    <li id="lhome"><a href="#00">HOME</a></li>
+    <li id="lproducts"><a href="#01">GAMES</a></li>
+    <li id="lsolutions"><a href="#02">FORUM</a></li>
+    <li id="lmysterious"><a href="#03">ABOUT US</a></li>
+  </ul>
+</div>
+<div id="wrapper">
+  <div id="content-wrapper">
+    <div id="content">
+      <h4>Top Forums</h4>
+      <dl>
+        {{#each comments}}
+        <dt>{{this}}</dt>
+        {{/each}}
+      </dl>
+      <h6>Top Games</h6>
+      <dl>
+        {{#each games}}
+        <dt>{{this}}</dt>
+        {{/each}}
+      </dl>
+    </div>
+  </div>
+  <div id="sidebar-wrapper">
+    <div id="sidebar">
+      <h3>List</h3>
+      <ul>
+        <li>Search</li>
+        <li>Name</li>
+        <li>Genre</li>
+        <li>Release Date</li>
+        <li>Popularity</li>
+      </ul>
+      <h3>List</h3>
+      <ol>
+        <li>Idea?</li>
+        <li>Idea?</li>
+        <li>Idea?</li>
+        <li>Idea?</li>
+        <li>Idea?</li>
+        <li>Idea?</li>
+      </ol>
+      <h3>Stats</h3>
+      <p> (Number of comments user has made and votes) </p>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <p> <a href="#">Terms of Service</a> | <a href="#">Privacy</a> | <a href="#">Contact</a> | <a href="#">About</a> |</p>
+</div>
