@@ -9,6 +9,8 @@ module.exports = function (sequelize, Sequelize) {
             foreignKey: {
                 allowNull: false
             }
+        }, {
+            timestamps: false
         });
 
         models.Vote.belongsTo(models.Game, {
@@ -16,6 +18,8 @@ module.exports = function (sequelize, Sequelize) {
             foreignKey: {
                 allowNull: false
             }
+        }, {
+            timestamps: false
         });
     };
 
