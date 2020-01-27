@@ -6,6 +6,8 @@ module.exports = function(sequelize,Sequelize) {
                 len: [ 1,140 ]
             }
         }
+    },{
+        timestamps: false
     });
 
     Comment.associate = function (models) {
