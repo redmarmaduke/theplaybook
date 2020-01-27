@@ -2,6 +2,7 @@
 var db = require("../models");
 var path = require("path");
 
+
 module.exports = function(app){
     // index route loads login page
     app.get("/", function(req, res){
@@ -13,7 +14,7 @@ module.exports = function(app){
         db.Game.findAll({
             limit:10
         }).then(function(dbGame){
-            res.json(dbGame);
+            res.render()
         });
     });
 
@@ -26,19 +27,28 @@ module.exports = function(app){
         });
     });
 
-    // GET route for retrieving a single game
-    app.get("/api/games/:id", function(req, res){
-        db.Game.findAll({
+    // GET route for retrieving a single comment
+    app.get("/api/comments/:id", function(req, res){
+        db.Comment.findAll({
             where: {id: req.params.id}
+        }).then(function(dbComment){
+            res.json(dbComment)
+        })
+    })
+
+    // GET route for retrieving a single game
+    app.get("/api/games/:name", function(req, res){
+        db.Game.findAll({
+            where: {name: req.params.name}
         }).then(function(dbGame){
             res.json(dbGame);
         });
     });
 
     // GET route for retrieving comments for a single game
-    app.get("/api/games/:id/comments", function(req, res){
+    app.get("/api/games/:name/comments", function(req, res){
        db.Game.findAll({
-           where:{id: req.params.id}, 
+           where:{name: req.params.name}, 
            include: [db.Comment]
        }).then(function(dbComment){
            res.json(dbComment);
@@ -58,7 +68,7 @@ module.exports = function(app){
     // GET route for retrieving my comments
     app.get("/api/profile/:userid/comments", function(req, res){
         db.User.findAll({
-            where: {id: req.params.id},
+            where: {id: req.params.userid},
             include: [db.Comment]
         }).then(function(dbProfile){
             res.json(dbProfile)
@@ -80,7 +90,7 @@ module.exports = function(app){
     });
 
     // PUT route for updating comment
-    app.put("/api/comment", function(req, res){
+    app.put("/api/comment/:id", function(req, res){
         db.Comment.update(
             req.body, 
             {
@@ -105,7 +115,7 @@ module.exports = function(app){
 
 
 
-
+return(db)
 
 
 }
