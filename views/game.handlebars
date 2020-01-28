@@ -1,0 +1,55 @@
+<style>
+  .game-body {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #0f0f0f;
+    background-image: url("https://media.rawg.io/media/games/b72/b7233d5d5b1e75e86bb860ccc7aeca85.jpg")
+  }
+
+  .comment-container {
+    margin: 20px;
+    padding: 20px;
+  }
+</style>
+<div id="header">
+  <h1>THE PLAYBOOK</h1>
+</div>
+<div id="navigation">
+  <ul>
+    <li id="lhome"><a href="/">HOME</a></li>
+  </ul>
+</div>
+<div class="game-header">
+  <h3>{{game.name}} (
+    {{#each game.genres}}
+    {{this}}
+    {{/each}}
+    )
+  </h3>
+  <h5>Release Date: {{game.releaseDate}}</h5>
+  <h5>Hype: {{game.hype}}</h5>
+</div>
+<div class="game-body">
+  <div id="wrapper">
+    <div id="content-wrapper">
+      <div id="content">
+        <span>
+        <textarea id="comment" cols="140" rows="1" style="resize: none;"></textarea>
+        <button id="create-comment" data-game-id="{{game.id}}" type="button">Add Comment</button>
+        </span>
+        <h4>Comments</h4>
+        <div class="comments-container">
+          {{#each game.comments}}
+          <div class="comment-container" style="background-color: #000;">
+            {{this.comment}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div id="footer">
+  <p> <a href="#">Terms of Service</a> | <a href="#">Privacy</a> | <a href="#">Contact</a> | <a href="#">About</a> |</p>
+</div>
