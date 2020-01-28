@@ -133,14 +133,14 @@ module.exports = function (app) {
             where: { id: req.params.userid },
             include: [db.Comment]
         }).then(function (records) {
-            let comments = records[0].dataValues.Comments.map((element) => {
+            let userComments = records[0].dataValues.Comments.map((element) => {
                 return {
                     commentId: element.id,
                     comment: element.text
                 };
             });
 
-            res.json(comments);
+            res.json(userComments);
         })
     });
 

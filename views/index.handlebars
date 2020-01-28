@@ -39,7 +39,10 @@
       </ul>
       <h3>My Comments:</h3>
       <ol>
-        <li>Idea?</li>
+        {{#each userComments}}
+        <li>{{this.comment}}</li>
+        {{/each}}
+        <li></li>
         <li>Idea?</li>
         <li>Idea?</li>
         <li>Idea?</li>
