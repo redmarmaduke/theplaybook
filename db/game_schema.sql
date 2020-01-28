@@ -11,15 +11,15 @@ BEGIN
     DECLARE GenreIdentifier INT(11);
     DECLARE Count INT(11);
     
-	SELECT id INTO GameIdentifier FROM games WHERE name = GameName;
+	SELECT id INTO GameIdentifier FROM game WHERE name = GameName;
     IF (GameIdentifier IS NULL) THEN
-		INSERT INTO games (name,releaseDate,hype) VALUES (GameName, GameReleaseDate, GameHype);
+		INSERT INTO game (name,releaseDate,hype) VALUES (GameName, GameReleaseDate, GameHype);
 		SET GameIdentifier = LAST_INSERT_ID();
 	END IF;
 
-	SELECT id INTO GenreIdentifier FROM genres WHERE name = GameGenre;
+	SELECT id INTO GenreIdentifier FROM genre WHERE name = GameGenre;
     IF (GenreIdentifier IS NULL) THEN
-		INSERT INTO genres (name) VALUES (GameGenre);
+		INSERT INTO genre (name) VALUES (GameGenre);
 		SET GenreIdentifier = LAST_INSERT_ID();
 	END IF;
 		

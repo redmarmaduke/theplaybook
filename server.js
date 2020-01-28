@@ -13,7 +13,8 @@ express.set("view engine", "handlebars");
 // acquire the routes for express
 let db = require('./controllers/routes.js')(express);
 
-db.sequelize.sync({ force: true }).then(function () {
+// { force: true } applied to sync to drop tables
+db.sequelize.sync().then(function () {
     express.listen(PORT, function (error) {
         if (error) {
             throw error;
