@@ -15,13 +15,14 @@
       <h4>Top Forums</h4>
       <dl>
         {{#each comments}}
-        <dt>{{this}}</dt>
+        <dt>{{this.userName}} - {{this.gameName}}</dt>
+        <dd>{{this.comment}}</dd>
         {{/each}}
       </dl>
       <h6>Top Games</h6>
       <dl>
         {{#each games}}
-        <dt>{{this}}</dt>
+        <dt>{{this.gameName}}</dt>
         {{/each}}
       </dl>
     </div>
