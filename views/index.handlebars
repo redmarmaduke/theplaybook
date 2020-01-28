@@ -15,15 +15,14 @@
       <h4>Top Forums</h4>
       <ul id="topComments">
         {{#each comments}}
-        <h6>Name of Game</h6>
-        <p>{{this}}</p>
-        <p>Comment by: </p>
+        <dt>{{this.userName}} - {{this.gameName}}</dt>
+        <dd>{{this.comment}}</dd>
         {{/each}}
       </ul>
       <h6>Top Games</h6>
       <dl>
         {{#each games}}
-        <dt><a href="/games">{{this}}</a></dt>
+        <dt><a href="/">{{this.gameName}}</a></dt>
         {{/each}}
       </dl>
     </div>
@@ -38,7 +37,7 @@
         <li>Release Date</li>
         <li>Popularity</li>
       </ul>
-      <h3>List</h3>
+      <h3>My Comments:</h3>
       <ol>
         <li>Idea?</li>
         <li>Idea?</li>
