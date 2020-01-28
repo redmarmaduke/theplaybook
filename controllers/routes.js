@@ -130,6 +130,10 @@ function getGamePageData(gameId) {
 module.exports = function (app) {
     // index route loads login page
     app.get("/", function (request, response) {
+        response.sendFile(path.join(__dirname, "../public/assets/index.html"));
+    });
+    // loads main page
+    app.get("/main", function (request, response) {
         // BUG: userId will be set to 1 by default.
         let userId = 1;
         getIndexPageData(userId).then(function (data) {
@@ -204,14 +208,14 @@ module.exports = function (app) {
             where: { id: req.params.userid },
             include: [db.Comment]
         }).then(function (records) {
-            let comments = records[0].dataValues.Comments.map((element) => {
+            let userComments = records[0].dataValues.Comments.map((element) => {
                 return {
                     commentId: element.id,
                     comment: element.text
                 };
             });
 
-            res.json(comments);
+            res.json(userComments);
         })
     });
 

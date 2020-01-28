@@ -10,16 +10,16 @@
   <div id="content-wrapper">
     <div id="content">
       <h4>Top Forums</h4>
-      <dl>
+      <ul id="topComments">
         {{#each comments}}
         <dt>{{this.userName}} - {{this.gameName}}</dt>
         <dd>{{this.comment}}</dd>
         {{/each}}
-      </dl>
+      </ul>
       <h6>Top Games</h6>
       <dl>
         {{#each games}}
-        <dt>{{this.gameName}}</dt>
+        <dt><a href="/">{{this.gameName}}</a></dt>
         {{/each}}
       </dl>
     </div>
@@ -34,9 +34,12 @@
         <li>Release Date</li>
         <li>Popularity</li>
       </ul>
-      <h3>List</h3>
+      <h3>My Comments:</h3>
       <ol>
-        <li>Idea?</li>
+        {{#each userComments}}
+        <li>{{this.comment}}</li>
+        {{/each}}
+        <li></li>
         <li>Idea?</li>
         <li>Idea?</li>
         <li>Idea?</li>

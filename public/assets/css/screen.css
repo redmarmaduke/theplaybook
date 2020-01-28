@@ -151,6 +151,11 @@ body
 	border-bottom: 10px solid #191919;
 }
 
+/* Top Comments */
+#topComments{
+	padding: 5px;
+	background: white;
+}
 /* Header */
 
 #header h1 { padding: 20px; }
