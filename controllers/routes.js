@@ -75,6 +75,7 @@ module.exports = function (app) {
 
     // route for main page
     app.get("/main", function (request, response) {
+        console.log('main')
         return renderIndexPage(response);
     });
 
@@ -201,6 +202,34 @@ module.exports = function (app) {
             password: req.body.password
         }).then(function(dbUser){
             res.json(dbUser)
+        })
+    })
+
+    // Check user Login info
+    app.get("/api/users/:username/:password", function(req, res){
+        db.User.findOne({
+            where: {
+                username: req.params.username,
+                password: req.params.password
+            }
+        }).then(function(user){
+            if(user === null){
+                res.json(false)
+            }
+            res.json(user.id)
+        })
+    })
+
+    app.get("/api/user/:id", function(req, res){
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(user){
+            if(user=== null){
+                res.json(false)
+            }
+            res.json(user)
         })
     })
 
