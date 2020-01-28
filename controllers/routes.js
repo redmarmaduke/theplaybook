@@ -150,7 +150,7 @@ module.exports = function (app) {
         })
     });
 
-    // GET route for retrieving my comments
+    // GET route for retrieving name by userId
     app.get("/api/profile/:userid/name", function (req, res) {
         db.User.findAll({
             where: { id: req.params.userid },
@@ -220,6 +220,7 @@ module.exports = function (app) {
         })
     })
 
+    // GET route to get information from a specific user
     app.get("/api/user/:id", function(req, res){
         db.User.findOne({
             where: {
@@ -232,6 +233,8 @@ module.exports = function (app) {
             res.json(user)
         })
     })
+
+    
 
     return (db);
 };

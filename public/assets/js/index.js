@@ -1,8 +1,6 @@
 $(function(){
     $("#create").on("submit",function(event){
         event.preventDefault();
-        console.log($("#createUsername").val().trim())
-        console.log($("#createPassword").val().trim())
         
         var newUser = {
             username: $("#createUsername").val().trim(),
