@@ -13,10 +13,17 @@ $(function(){
             type: "POST",
             data: newUser
         }).then(
-            function(){
-                console.log("Created new user")
-                $("#createUsername").val('')
-                $("#createPassword").val('')              
+            function(confirm){
+                if(confirm){
+                    console.log("Created new user")
+                    $("#createUsername").val('')
+                    $("#createPassword").val('') 
+                    window.localStorage.setItem("user", confirm)
+                }
+                else{
+                    console.log("registration failed")
+                }
+                             
             }
         )
     })
@@ -35,7 +42,7 @@ $(function(){
             function(confirm){
                 if(confirm){
                     window.location = "/main"
-                
+                    window.localStorage.setItem("user", confirm)
                 }
                 else(
                     alert("Log in failed")
