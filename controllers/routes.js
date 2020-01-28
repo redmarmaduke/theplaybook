@@ -132,8 +132,15 @@ module.exports = function (app) {
         db.User.findAll({
             where: { id: req.params.userid },
             include: [db.Comment]
-        }).then(function (dbProfile) {
-            res.json(dbProfile);
+        }).then(function (records) {
+            let comments = records[0].dataValues.Comments.map((element) => {
+                return {
+                    commentId: element.id,
+                    comment: element.text
+                };
+            });
+
+            res.json(comments);
         })
     });
 
