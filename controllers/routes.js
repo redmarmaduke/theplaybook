@@ -70,6 +70,11 @@ function renderIndexPage(response) {
 module.exports = function (app) {
     // index route loads login page
     app.get("/", function (request, response) {
+        response.sendFile(path.join(__dirname, "../public/assets/index.html"));
+    });
+
+    // route for main page
+    app.get("/main", function (request, response) {
         return renderIndexPage(response);
     });
 
@@ -188,6 +193,16 @@ module.exports = function (app) {
             res.json(dbComment);
         });
     });
+
+    // POST route for creating a user
+    app.post("/api/users", function(req, res){
+        db.User.create({
+            username: req.body.username,
+            password: req.body.password
+        }).then(function(dbUser){
+            res.json(dbUser)
+        })
+    })
 
     return (db);
 };

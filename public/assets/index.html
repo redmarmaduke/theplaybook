@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The PLAYBOOK</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/style.css" />
+ 
 </head>
 <body>
         <div id="header">
@@ -14,17 +16,17 @@
               </div>
               <br>
       <div class="container" id="create">
-            <form>
+            <form id="create">
                 <h3 class="text-white">Create an account:</h3>
                     <div class="form-group">
-                      <label for="createUsername" class="text-white">Create Username:</label>
+                      <label class="text-white">Create Username:</label>
                       <input type="text" class="form-control" id="createUsername" placeholder="Username">
                     </div>
                     <div class="form-group">
-                      <label for="createPassword" class="text-white">Create Password:</label>
-                      <input type="text" class="form-control" id="createPassword" placeholder="Password">
+                      <label class="text-white">Create Password:</label>
+                      <input type="password" class="form-control" id="createPassword" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Create Account</button>
+                    <button type="submit" id="createAccount" class="btn btn-primary">Create Account</button>
                   </form>
       </div>
       <br>
@@ -33,17 +35,17 @@
                 <h3 class="text-white">Log In:</h3>
                     <div class="form-group">
                       <label for="Username" class="text-white">Username:</label>
-                      <input type="text" class="form-control" id="createUsername" placeholder="Username">
+                      <input type="text" class="form-control" id="Username" placeholder="Username">
                     </div>
                     <div class="form-group">
                       <label for="Password" class="text-white">Password:</label>
-                      <input type="text" class="form-control" id="createPassword" placeholder="Password">
+                      <input type="text" class="form-control" id="Password" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Log In</button>
+                    <button type="submit" id="logIn" class="btn btn-primary">Log In</button>
                   </form>
       </div>
         
-   
+   <script src="../assets/js/index.js"></script>
     
 </body>
 </html>

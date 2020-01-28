@@ -13,6 +13,6 @@ body{
 	width: 100%; 
 	clear: both;
 	border-top: 10px solid #111111;
-	background: #222222 url(images/navigation_hover.gif) top left repeat;
+	background: #222222 
 }
 h1, h2, h3, h4, h5, h6 { font-weight: normal; margin: 0; padding: 10px 0; color: #779955; }
