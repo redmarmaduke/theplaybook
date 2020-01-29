@@ -48,10 +48,9 @@ $(function () {
     // Delete Comment
     $("#delete-comment").on("click", function (event) {
         var id = $(this).data("id");
+        console.log("ID:",id);
         // Send DELETE request
-        axios("/api/comments/" + id, {
-            type: "DELETE"
-        }).then(function () {
+        axios.delete("/api/comments/" + id).then(function () {
             console.log("deleted comment")
             location.reload()
         })
