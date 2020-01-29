@@ -2,9 +2,9 @@ const db = require('../models');
 var path = require("path");
 
 /**
- * renderIndexPage
+ * getIndexPageData
  * 
- * @param {Array[Object]} response
+ * @param {Number} userId
  * 
  * @return response result 
  * 
@@ -27,7 +27,8 @@ var path = require("path");
  *  }
  * } 
  */
-function renderIndexPage(response) {
+function getIndexPageData(userId) {
+    // dev crutch for missing userid
     let games = db.Game.findAll({
         limit: 10
     }).then(function (records) {
@@ -60,17 +61,93 @@ function renderIndexPage(response) {
         });
     });
 
-    return Promise.all([games, comments]).then(function (promises) {
-        return response.render('index', { games: promises[0], comments: promises[1] });
-    }).catch(function (error) {
-        return response.render('index', { comments: {}, games: {} });
+    let userComments = db.User.findAll({
+        where: { id: userId },
+        include: [db.Comment]
+    }).then(function (records) {
+        return new Promise(function (resolve, reject) {
+            let comments = records[0].dataValues.Comments.map((element) => {
+                return {
+                    commentId: element.id,
+                    comment: element.text
+                };
+            });
+            resolve(comments);
+        });
     });
+
+    return Promise.all([games, comments, userComments]).then(function (promises) {
+        return new Promise(function (resolve, reject) {
+            resolve({ games: promises[0], comments: promises[1], userComments: promises[2] });
+        });
+    }).catch(function (error) {
+        console.error(error);
+        return new Promise(function (resolve, reject) {
+            resolve({ comments: {}, games: {}, userComments: {} });
+        });
+    });
+}
+
+function getGamePageData(gameId) {
+    let game = db.Game.findOne({
+        where: {
+            id: gameId
+        },
+        include: [db.Comment, db.Genre ]
+    }).then(function (record) {
+        return new Promise((resolve, reject) => {
+            let unprocessedComments = record.dataValues.Comments;
+            let comments = unprocessedComments.map((element) => {
+                return {
+                    commentId: element.dataValues.id,
+                    comment: element.dataValues.text,
+                };
+            });
+            let unprocessedGenres = record.dataValues.Genres;
+            let genres = unprocessedGenres.map((element) => {
+                return element.dataValues.name;
+            });
+            resolve({
+                game: {
+                    id: record.dataValues.id,
+                    name: record.dataValues.name,
+                    releaseDate: record.dataValues.releaseDate,
+                    hype: record.dataValues.hype,
+                    backgroundImage: "https://media.rawg.io/media/games/b72/b7233d5d5b1e75e86bb860ccc7aeca85.jpg",
+                    backgroundColor: "0f0f0f",
+                    comments: comments,
+                    genres: genres
+                }
+            });
+        });
+    });
+
+    return game;
 }
 
 module.exports = function (app) {
     // index route loads login page
     app.get("/", function (request, response) {
-        return renderIndexPage(response);
+        response.sendFile(path.join(__dirname, "../public/assets/index.html"));
+    });
+
+    // loads main page
+    app.get("/main", function (request, response) {
+        console.log(request.session);
+
+        if (!request.session.loggedIn) {
+            return response.status(401).send('Authorization required');
+        }
+        getIndexPageData(request.session.userId).then(function (data) {
+            response.render('index', data);
+        });
+    });
+
+    app.get("/games/:id", function (request, response) {
+        let gameId = parseInt(request.params.id);
+        getGamePageData(gameId).then(function (data) {
+            response.render('game', data);
+        });
     });
 
     // GET route for getting top 10 games 
@@ -133,18 +210,18 @@ module.exports = function (app) {
             where: { id: req.params.userid },
             include: [db.Comment]
         }).then(function (records) {
-            let comments = records[0].dataValues.Comments.map((element) => {
+            let userComments = records[0].dataValues.Comments.map((element) => {
                 return {
                     commentId: element.id,
                     comment: element.text
                 };
             });
 
-            res.json(comments);
+            res.json(userComments);
         })
     });
 
-    // GET route for retrieving my comments
+    // GET route for retrieving the name by userid
     app.get("/api/profile/:userid/name", function (req, res) {
         db.User.findAll({
             where: { id: req.params.userid },
@@ -167,7 +244,7 @@ module.exports = function (app) {
         });
     });
 
-    // PUT route for updating comment
+    // PUT route for updating comment by id
     app.put("/api/comment/:id", function (req, res) {
         db.Comment.update(
             req.body,
@@ -186,6 +263,55 @@ module.exports = function (app) {
             where: { id: req.params.id }
         }).then(function (dbComment) {
             res.json(dbComment);
+        });
+    });
+
+    // POST route for creating a user
+    app.post("/token", function(req, res) {
+        console.log("API/AUTH");
+        
+        db.User.create({
+            username: req.body.username,
+            password: req.body.password
+        }).then(function(dbUser){
+            req.session.loggedIn=true;
+            req.session.userId = user.id;
+            res.redirect("/main");
+        }).catch(function(error) {
+            res.redirect("/");
+        });
+    });
+
+    // Check user Login info
+    app.post("/auth", function(req, res){
+        console.log("AUTH");
+        db.User.findOne({
+            where: {
+                username: req.body.username,
+                password: req.body.password
+            }
+        }).then(function(user){
+            if(user === null){
+                res.redirect("/");
+                //res.json(false)
+            }
+            req.session.loggedIn=true;
+            req.session.userId = user.id;
+            res.redirect("/main");
+        });
+    });
+
+    // GET route to get information from a specific user
+    app.get("/api/user/:id", function(req, res){
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(user){
+            if(user=== null){
+                res.json(false)
+            }
+            res.json(user)
         });
     });
 
