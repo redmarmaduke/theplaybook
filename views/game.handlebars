@@ -34,14 +34,17 @@
     <div id="content-wrapper">
       <div id="content">
         <span>
-        <textarea id="comment" cols="140" rows="1" style="resize: none;"></textarea>
-        <button id="create-comment" data-game-id="{{game.id}}" type="button">Add Comment</button>
+          <textarea id="comment" cols="140" rows="1" style="resize: none;"></textarea>
+          <button id="create-comment" data-game-id="{{game.id}}" type="button">Add Comment</button>
         </span>
         <h4>Comments</h4>
         <div class="comments-container">
           {{#each game.comments}}
           <div class="comment-container" style="background-color: #000;">
             {{this.comment}}
+          </div>
+          <div class="comment-container">
+          <button id="edit-comment" type="button" class="btn btn-warning">Update</button>&nbsp<button id="delete-comment" data-id="{{this.commentId}}" type="button" class="btn btn-danger">Delete</button>
           </div>
           {{/each}}
         </div>

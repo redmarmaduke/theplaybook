@@ -259,10 +259,14 @@ module.exports = function (app) {
 
     // DELETE route for deleting comment
     app.delete("/api/comments/:id", function (req, res) {
+        console.log("UserId",req.session.userId);
         db.Comment.destroy({
-            where: { id: req.params.id }
+            where: { id: req.params.id,
+            UserId: parseInt(req.session.userId) }
         }).then(function (dbComment) {
             res.json(dbComment);
+        }).catch(function(error) {
+            res.status(200).end();
         });
     });
 
