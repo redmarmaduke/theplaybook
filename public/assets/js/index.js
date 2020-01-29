@@ -1,4 +1,4 @@
-$(function(){
+/* $(function(){
     $("#create").on("submit",function(event){
         event.preventDefault();
         
@@ -51,3 +51,4 @@ $(function(){
     })
     
 })
+*/

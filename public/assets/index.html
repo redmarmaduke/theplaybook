@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>The PLAYBOOK</title>
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/style.css" />
- 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The PLAYBOOK</title>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen" href="../assets/css/style.css" />
+
 </head>
+
 <body>
-        <div id="header">
-                <h1>THE PLAYBOOK</h1>
-              </div>
-              <br>
-      <div class="container" id="create">
-            <form id="create">
-                <h3 class="text-white">Create an account:</h3>
-                    <div class="form-group">
-                      <label class="text-white">Create Username:</label>
-                      <input type="text" class="form-control" id="createUsername" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                      <label class="text-white">Create Password:</label>
-                      <input type="password" class="form-control" id="createPassword" placeholder="Password">
-                    </div>
-                    <button type="submit" id="createAccount" class="btn btn-primary">Create Account</button>
-                  </form>
+  <div id="header">
+    <h1>THE PLAYBOOK</h1>
+  </div>
+  <br>
+  <div class="container" id="createAccount">
+    <form action="token" method="post">
+      <h3 class="text-white">Create an account:</h3>
+      <div class="form-group">
+        <label for="newUsername" class="text-white">Create Username:</label>
+        <input type="text" name="username" class="form-control" id="newUsername" placeholder="Username" required>
       </div>
-      <br>
-      <div class="container" id="login">
-            <form id="log">
-                <h3 class="text-white">Log In:</h3>
-                    <div class="form-group">
-                      <label for="Username" class="text-white">Username:</label>
-                      <input type="text" class="form-control" id="username" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                      <label for="Password" class="text-white">Password:</label>
-                      <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    <button type="submit" id="logIn" class="btn btn-primary">Log In</button>
-                  </form>
+      <div class="form-group">
+        <label for="newPassword" class="text-white">Create Password:</label>
+        <input type="password" name="password" class="form-control" id="newPassword" placeholder="Password" required>
       </div>
-        
-   <script src="../assets/js/index.js"></script>
-    
+      <button type="submit" id="createAccount" class="btn btn-primary">Create Account</button>
+    </form>
+  </div>
+  <br>
+  <div class="container" id="login">
+    <form action="auth" method="post">
+      <h3 class="text-white">Log In:</h3>
+      <div class="form-group">
+        <label for="username" class="text-white">Username:</label>
+        <input type="text" name="username" class="form-control" id="username" placeholder="Username" required>
+      </div>
+      <div class="form-group">
+        <label for="password" class="text-white">Password:</label>
+        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" id="logIn" class="btn btn-primary">Log In</button>
+    </form>
+  </div>
+
+  <script src="../assets/js/index.js"></script>
+
 </body>
+
 </html>
