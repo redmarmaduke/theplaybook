@@ -1,0 +1,67 @@
+html, body {
+	font: normal 12px 'Open Sans', sans-serif;
+	color: #FFF;
+	background: #333 url(images/spectrum.png) top left repeat;
+}
+.container-lg {
+
+}
+.pagebox {
+	color: #FFF;
+	margin: 10px; 35px;
+	border: 1px solid rgb(23,143,67);
+	border-top: 10px solid rgb(23,143,67);
+	background: rgba(0,0,0,0.6)!important;
+}
+h3 {
+	font-family: 'Press Start 2P', cursive;
+	padding-top: 20px;
+	color: #FFF;
+}
+h1 {
+	color: rgb(23,143,67);
+	font-family: 'Press Start 2P', cursive;
+}
+.playbook-title {
+	background-color: rgba(0,0,0,0.7)!important;
+}
+.playbook-nav {
+	background-color: rgba(0,0,0,0.5)!important;
+	
+}
+
+dl {
+	margin: 10px 15px;
+}
+dt {
+	font-weight: bold;
+	color: rgb(53,173,67);
+	font-size: 14px;
+	text-transform: uppercase;
+	padding-top: 5px;
+}
+dd {
+	padding-bottom: 15px;
+	border-bottom: 1px solid #555;
+}
+dd:last-child {
+	border-bottom: 0px;
+}
+
+ul {
+	margin: 10px 15px;
+	list-style: square;
+}
+li {
+	font-weight: bold;
+	color: rgb(53,173,67);
+	font-size: 14px;
+	text-transform: uppercase;
+	padding-top: 5px;
+}
+li a {
+	color: rgb(53,173,67);
+}
+li a:hover {
+	color: rgb(255,255,255);
+}

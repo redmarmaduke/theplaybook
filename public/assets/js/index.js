@@ -1,4 +1,4 @@
-$(function(){
+/* $(function(){
     $("#create").on("submit",function(event){
         event.preventDefault();
         
@@ -51,4 +51,8 @@ $(function(){
     })
     
 })
+<<<<<<< HEAD
 
+=======
+*/
+>>>>>>> 1a9a1fb0affad7401c0dc592067c1a834e69e903
