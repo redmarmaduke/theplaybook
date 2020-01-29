@@ -1,35 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/playbook.css" >
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>The Playbook</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark playbook-title">
+      <h1>The Playbook</h1>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark playbook-nav">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<div id="header">
-  <h1>THE PLAYBOOK</h1>
-</div>
-<div id="navigation">
-  <ul>
-    <li id="lhome"><a href="/main">HOME</a></li>
-  </ul>
-</div>
-<div class="wrapper">
-  <div id="content-wrapper">
-    <div id="content">
-      <h4>Top Forums</h4>
-      <ul id="topComments">
-        {{#each comments}}
-        <dt>{{this.userName}} - <a href="/games/{{this.gameId}}">{{this.gameName}}</a></dt>
-        <dd>{{this.comment}}</dd>
-        {{/each}}
-      </ul>
-      <h6>Top Games</h6>
-      <dl>
-        {{#each games}}
-        <dt><a href="/games/{{this.gameId}}">{{this.gameName}}</a></dt>
-        {{/each}}
-      </dl>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Games</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Forum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
     </div>
   </div>
-  <div id="sidebar-wrapper">
-    <div id="sidebar">
-
-       <h3>Search</h3>
+</nav>
+    <div class="container-lg">
+    <div class="row">
+      <div class="col-sm-12 order-md-2 col-md-3">
+        <div class="row">
+          <div class="col">
+            <h3>List</h3>
             <div class="pagebox">
               <ul>
                 <li>Search</li>
@@ -43,7 +58,7 @@
         </div>
       </div>
       <div class="col-sm-12 col-md-9 order-md-1">
-        <h3>List of Games</h3>
+        <h3>Name</h3>
         <div class="pagebox">
           <dl>
             <dt>Really cool game title</dt>
@@ -76,25 +91,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
-      {{!-- <h3>List</h3>
-      <ul>
-        <li><a href="#">Search</a></li>
-        <li><a href="#">Name</a></li>
-        <li><a href="#">Genre</a></li>
-        <li><a href="#">Release Date</a></li>
-        <li><a href="#">Popularity</a></li>
-      </ul>
-      <h3>My Comments:</h3>
-      <ol>
-        {{#each userComments}}
-        <li>{{this.comment}}</li>
-        {{/each}}
-      </ol>
-      <h3>Stats</h3>
-      <p> (Number of comments user has made and votes) </p>
-    </div>
-  </div>
-</div>
-<div id="footer">
-  <p> <a href="#">Terms of Service</a> | <a href="#">Privacy</a> | <a href="#">Contact</a> | <a href="#">About</a> |</p>
-</div> --}}
