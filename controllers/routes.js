@@ -29,8 +29,6 @@ var path = require("path");
  */
 function getIndexPageData(userId) {
     // dev crutch for missing userid
-    userId = userId || 1;
-
     let games = db.Game.findAll({
         limit: 10
     }).then(function (records) {
@@ -132,11 +130,15 @@ module.exports = function (app) {
     app.get("/", function (request, response) {
         response.sendFile(path.join(__dirname, "../public/assets/index.html"));
     });
+
     // loads main page
     app.get("/main", function (request, response) {
-        // BUG: userId will be set to 1 by default.
-        let userId = 1;
-        getIndexPageData(userId).then(function (data) {
+        console.log(request.session);
+
+        if (!request.session.loggedIn) {
+            return response.status(401).send('Authorization required');
+        }
+        getIndexPageData(request.session.userId).then(function (data) {
             response.render('index', data);
         });
     });
@@ -265,27 +267,37 @@ module.exports = function (app) {
     });
 
     // POST route for creating a user
-    app.post("/api/users", function(req, res){
+    app.post("/token", function(req, res) {
+        console.log("API/AUTH");
+        
         db.User.create({
             username: req.body.username,
             password: req.body.password
         }).then(function(dbUser){
-            res.json(dbUser)
-        })
+            req.session.loggedIn=true;
+            req.session.userId = user.id;
+            res.redirect("/main");
+        }).catch(function(error) {
+            res.redirect("/");
+        });
     });
 
     // Check user Login info
-    app.get("/api/users/:username/:password", function(req, res){
+    app.post("/auth", function(req, res){
+        console.log("AUTH");
         db.User.findOne({
             where: {
-                username: req.params.username,
-                password: req.params.password
+                username: req.body.username,
+                password: req.body.password
             }
         }).then(function(user){
             if(user === null){
-                res.json(false)
+                res.redirect("/");
+                //res.json(false)
             }
-            res.json(user.id)
+            req.session.loggedIn=true;
+            req.session.userId = user.id;
+            res.redirect("/main");
         });
     });
 

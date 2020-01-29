@@ -3,7 +3,7 @@
 </div>
 <div id="navigation">
   <ul>
-    <li id="lhome"><a href="/">HOME</a></li>
+    <li id="lhome"><a href="/main">HOME</a></li>
   </ul>
 </div>
 <div class="wrapper">
@@ -12,14 +12,14 @@
       <h4>Top Forums</h4>
       <ul id="topComments">
         {{#each comments}}
-        <dt>{{this.userName}} - {{this.gameName}}</dt>
+        <dt>{{this.userName}} - <a href="/games/{{this.gameId}}">{{this.gameName}}</a></dt>
         <dd>{{this.comment}}</dd>
         {{/each}}
       </ul>
       <h6>Top Games</h6>
       <dl>
         {{#each games}}
-        <dt><a href="/">{{this.gameName}}</a></dt>
+        <dt><a href="/games/{{this.gameId}}">{{this.gameName}}</a></dt>
         {{/each}}
       </dl>
     </div>
