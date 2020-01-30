@@ -10,8 +10,9 @@ express.use(Express.json());
 express.use(Express.static("public"));
 
 express.use(ExpressSession({
-	secret: 'secret',
-	resave: true,
+	secret: 'its nobodys secret',
+    resave: true,
+    httpOnly: false,
 	saveUninitialized: true
 }));
 

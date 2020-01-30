@@ -20,39 +20,53 @@ $(function () {
             GameId: gameId
         }
         //Send POST request
-        axios.post("/api/comment",newComment).then(
+        axios.post("/api/comment", newComment).then(
             function () {
-                console.log("added new comment");
                 location.reload();
             }
         );
     })
+
     // Edit Comment
-    $("#edit-comment").on("click", function (event) {
-        var id = $(this).data("id")
-        var editedComment = {
-            text: $("#comment").val().trim(),
-            userId: 1,
-            GameID: $(this).data("game-id")
+    $(".edit-comment").on("click", function (event) {
+        var btn = $(event.target);
+        
+        var id = btn.data("id");
+        var state = btn.data("state");
+        var textarea = $(`:input[data-id='${id}']`);
+        
+        // if state is equal to update
+        if (!state.localeCompare("update")) {
+            textarea.attr('readonly', false);
+            
+            btn.html("Save");
+            btn.removeClass("btn-warning");
+            btn.addClass("btn-success");
+            btn.data("state","save");
         }
-        //Send PUT request
-        axios.put("/api/comment/" + id, {
-            data: editedComment
-        }).then(
-            function () {
-                console.log("edited comment")
+        else {
+            textarea.attr('readonly', true);
+            
+            btn.html("Update");
+            btn.removeClass("btn-success");
+            btn.addClass("btn-warning");
+            btn.data("state","update");
+
+            //Send PUT request
+            axios.put("/api/comment/" + id, {
+                comment: textarea.val().trim()
+            }).then(function () {
                 location.reload()
-            }
-        )
-    })
+            });
+        }
+    });
+
     // Delete Comment
-    $("#delete-comment").on("click", function (event) {
-        var id = $(this).data("id");
-        console.log("ID:",id);
+    $(".delete-comment").on("click", function (event) {
+        var id = $(event.target).data("id");
         // Send DELETE request
-        axios.delete("/api/comments/" + id).then(function () {
-            console.log("deleted comment")
-            location.reload()
-        })
+        axios.delete("/api/comment/" + id).then(function () {
+            location.reload();
+        });
     });
 });
