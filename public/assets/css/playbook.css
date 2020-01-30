@@ -4,15 +4,17 @@ html, body {
 	background: #333 url(images/spectrum.png) top left repeat;
 }
 .container-lg {
-
+	
 }
+
 .pagebox {
 	color: #FFF;
-	margin: 10px; 35px;
+	margin: 10px, 35px;
 	border: 1px solid rgb(23,143,67);
 	border-top: 10px solid rgb(23,143,67);
 	background: rgba(0,0,0,0.6)!important;
 }
+
 h3 {
 	font-family: 'Press Start 2P', cursive;
 	padding-top: 20px;
