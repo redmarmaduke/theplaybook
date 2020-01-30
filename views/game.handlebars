@@ -6,9 +6,22 @@
     background-image: url("https://media.rawg.io/media/games/b72/b7233d5d5b1e75e86bb860ccc7aeca85.jpg")
   }
 
-  .comment-container {
-    margin: 20px;
-    padding: 20px;
+  .gamebox {
+    color: #FFF;
+    margin: 10px, 35px;
+    border: 1px solid #0f0f0f;
+    border-top: 10px solid #0f0f0f;
+    background: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  h4 {
+    font-family: 'Press Start 2P', cursive;
+    color: #0f0f0f;
+  }
+
+  textarea {
+    color: #FFF;
+    background: transparent !important;
   }
 </style>
 <div id="header">
@@ -33,22 +46,42 @@
   <div id="wrapper">
     <div id="content-wrapper">
       <div id="content">
-        <span>
-        <textarea id="comment" cols="140" rows="1" style="resize: none;"></textarea>
-        <button id="create-comment" data-game-id="{{game.id}}" type="button">Add Comment</button>
-        </span>
-        <h4>Comments</h4>
-        <div class="comments-container">
-          {{#each game.comments}}
-          <div class="comment-container" style="background-color: #000;">
-            {{this.comment}}
+        <div class="row">
+          <div class="col-md-9 col-sm-12">
+            <div class="gamebox">
+              <textarea id="comment" cols="35" style="resize: none;"></textarea>
+              <button id="create-comment" class="btn btn-success" data-game-id="{{game.id}}" type="button">Add
+                Comment</button>
+            </div>
           </div>
-          {{/each}}
+        </div>
+        <div class="row">
+          <div class="col-md-9 col-sm-12">
+            <h4>Comments</h4>
+            {{#each game.comments}}
+            <div class="form-inline gamebox">
+              <div>
+                <dt>{{this.userName}}</dt>
+                <dd>
+                  <textarea data-id="{{this.id}}" cols="35" style="resize: none;" readonly>
+            {{this.comment}}
+              </textarea>
+                </dd>
+              </div>
+              <div>
+                {{#if this.canUpdate}}
+                <button data-id="{{this.id}}" data-state="update" type="button"
+                  class="edit-comment btn btn-warning">Update</button>&nbsp
+                <button data-id="{{this.id}}" type="button" class="delete-comment btn btn-danger">Delete</button>
+                {{/if}}
+              </div>
+            </div>
+            {{/each}}
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <div id="footer">
   <p> <a href="#">Terms of Service</a> | <a href="#">Privacy</a> | <a href="#">Contact</a> | <a href="#">About</a> |</p>
