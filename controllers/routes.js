@@ -138,6 +138,31 @@ function getGamePageData(gameId, userId) {
     return game;
 }
 
+function getAllGames(){
+    let allGames = db.Game.findAll({
+        order: [['hype', 'DESC']]
+    }).then(function (records) {
+        return new Promise((resolve, reject) => {
+            resolve(records.map((element) => {
+                return {
+                    gameId: element.dataValues.id, 
+                    gameName: element.dataValues.name
+                };
+            }));
+        });
+    });
+    return Promise.all([allGames]).then(function (promises) {
+        return new Promise(function (resolve, reject) {
+            resolve({ allGames: promises[0] });
+        });
+    }).catch(function (error) {
+        console.error(error);
+        return new Promise(function (resolve, reject) {
+            resolve({ allGames:{}});
+        });
+    });
+}
+
 module.exports = function (app) {
     // index route loads login page
     app.get("/", function (request, response) {
@@ -184,6 +209,16 @@ module.exports = function (app) {
             res.json(dbComment);
         });
     });
+
+    // GET route for getting all games
+    app.get("/allgames", function(request, response){
+        if(!request.session.loggedIn){
+            return response.status(401).send('Authorization required');
+        }
+        getAllGames().then(function(data){
+            response.render('allgames', data);
+        });
+    })
 
     // POST route for adding a new comment
     app.post("/api/comment", function (req, res) {
@@ -261,16 +296,7 @@ module.exports = function (app) {
             res.json(dbComment);
         });
     });
-    // GET route for retrieving votes for a single game
-    app.get("/api/games/:id/votes", function (req, res) {
-        db.Game.findAll({
-            where: { id: req.params.id },
-            include: [db.Vote]
-        }).then(function (dbVote) {
-            res.json(dbVote);
-        });
-    });
-
+  
     // GET route for retrieving my comments
     app.get("/api/profile/:userid/comments", function (req, res) {
         db.User.findAll({
@@ -296,15 +322,6 @@ module.exports = function (app) {
             res.json(records[0].dataValues.username);
         })
     });
-
-
-    // POST route for voting 
-    app.post("/api/vote", function (req, res) {
-        db.Vote.create(req.body).then(function (dbVote) {
-            res.json(dbVote);
-        });
-    });
-
 
     // POST route for creating a user
     app.post("/token", function (req, res) {

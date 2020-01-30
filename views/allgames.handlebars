@@ -19,27 +19,20 @@
     </div>
   </div>
 </nav>
-<div class="container-lg">
-  <div class="row">
-    
-    <div class="col-sm-12 col-md-9 order-md-1">
-      <h3>Forum</h3>
-      <div class="pagebox">
+
+
+<div id="list">
+    <h3>All games:</h3>
+    <div class="pagebox">
         <dl>
-          {{#each comments}}
-          <dt>{{this.userName}} - <a href="/games/{{this.gameId}}">{{this.gameName}}</a></dt>
-          <dd>{{this.comment}}</dd>
-          {{/each}}
-        </dl>
-      </div>
-      <h3>Top Games</h3>
-      <div class="pagebox">
-        <dl>
-          {{#each games}}
+          {{#each allGames}}
           <dt><a href="/games/{{this.gameId}}">{{this.gameName}}</a></dt>
           {{/each}}
         </dl>
       </div>
-    </div>
-  </div>
+   
+
+</div>
+<div id="footer">
+  <p> <a href="#">Terms of Service</a> | <a href="#">Privacy</a> | <a href="#">Contact</a> | <a href="#">About</a> |</p>
 </div>
