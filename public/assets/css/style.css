@@ -28,3 +28,12 @@ h1 {
 	color: rgb(23,143,67);
 	font-family: 'Press Start 2P', cursive;
 }
+#navigation
+{
+	float: left;
+	width: 100%; 
+	clear: both;
+	color: #333333;
+	border-bottom: 5px solid #222222;
+	background: #eeeeee url(images/navigation_bg.gif) top left repeat; 
+}
