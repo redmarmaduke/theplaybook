@@ -1,0 +1,23 @@
+<div id="header">
+  <h1>THE PLAYBOOK</h1>
+</div>
+<div id="navigation">
+  <ul>
+    <li id="lhome"><a href="/main">HOME</a></li>
+  </ul>
+</div>
+<div id="list">
+    <h3>All games:</h3>
+    <div class="pagebox">
+        <dl>
+          {{#each allGames}}
+          <dt><a href="/games/{{this.gameId}}">{{this.gameName}}</a></dt>
+          {{/each}}
+        </dl>
+      </div>
+   
+
+</div>
+<div id="footer">
+  <p> <a href="#">Terms of Service</a> | <a href="#">Privacy</a> | <a href="#">Contact</a> | <a href="#">About</a> |</p>
+</div>
